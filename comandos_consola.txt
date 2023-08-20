@@ -1,0 +1,92 @@
+
+● Por medio de la consola interpretador de python (shell), realice las siguientes consultas:
+○ Obtenga todos los objetos tanto Laboratorio, DirectorGeneral y Productos.
+	>>> from laboratorio.models import *
+	>>> laboratorios = Laboratorio.objects.all().values()
+	>>> laboratorios
+	<QuerySet [{'id': 1, 'nombre': 'Laboratorio1'}, {'id': 2, 'nombre': 'Laboratorio2'}, {'id': 3, 'nombre': 'Laboratorio3'}]>
+	>>> directores = DirectorGeneral.objects.all().values() 
+	>>> directores
+	<QuerySet [{'id': 1, 'nombre': 'Director General 1', 'laboratorio_id': 1}, {'id': 2, 'nombre': 'Director General 2', 'laboratorio_id': 2}, {'id': 3, 'nombre': 'Director General 3', 'laboratorio_id': 3}]>
+	>>> productos = Producto.objects.all().values()
+	>>> productos
+	<QuerySet [{'id': 1, 'nombre': 'Producto 1', 'laboratorio_id': 1, 'f_fabricacion': datetime.date(2022, 1, 1), 'p_costo': Decimal('1500.00'), 'p_venta': Decimal('2000.00')}, {'id': 2, 'nombre': 'Producto 2', 'laboratorio_id': 2, 'f_fabricacion': datetime.date(2021, 1, 1), 'p_costo': Decimal('2500.00'), 'p_venta': Decimal('3000.00')}, {'id': 3, 'nombre': 'Producto 3', 'laboratorio_id': 3, 'f_fabricacion': datetime.date(2019, 1, 1), 'p_costo': Decimal('3500.00'), 'p_venta': Decimal('4500.00')}]>
+	>>>
+
+○ Obtenga el laboratorio del Producto cuyo nombre es ‘Producto 1’.
+	>>> consulta1 = Laboratorio.objects.filter(producto__nombre='Producto 1').values('nombre')
+	>>> consulta1
+	<QuerySet [{'nombre': 'Laboratorio1'}]>
+	>>>
+
+○ Ordene todos los productos por nombre, y que muestre los valores de nombre y laboratorio.
+	>>> consulta2 = Producto.objects.all().values('nombre', 'laboratorio__nombre').order_by('nombre') 
+	>>> consulta2
+	<QuerySet [{'nombre': 'Producto 1', 'laboratorio__nombre': 'Laboratorio1'}, {'nombre': 'Producto 2', 'laboratorio__nombre': 'Laboratorio2'}, {'nombre': 'Producto 3', 'laboratorio__nombre': 'Laboratorio3'}]>
+	>>>
+
+○ Realice una consulta que imprima por pantalla los laboratorios de todos los productos.
+	>>> consulta3 = Producto.objects.all()
+	>>> consulta3
+	<QuerySet [<Producto: Producto 1>, <Producto: Producto 2>, <Producto: Producto 3>]>
+	>>> for item in consulta3:
+	...     print(item.laboratorio.nombre) 
+	...
+	Laboratorio1
+	Laboratorio2
+	Laboratorio3
+	>>>
+
+● Migraciones para actualización de campos del modelo
+	python manage.py makemigrations laboratorio --name actualizado_campos
+	Migrations for 'laboratorio':
+	  laboratorio\migrations\0002_actualizado_campos.py
+		- Add field especialidad to directorgeneral
+		- Add field ciudad to laboratorio
+		- Add field pais to laboratorio
+
+	python manage.py migrate                              
+	Operations to perform:
+	  Apply all migrations: admin, auth, contenttypes, laboratorio, sessions
+	Running migrations:
+	  Applying laboratorio.0002_actualizado_campos... OK
+
+	python manage.py showmigrations
+	admin
+	 [X] 0001_initial
+	 [X] 0002_logentry_remove_auto_add
+	 [X] 0003_logentry_add_action_flag_choices
+	auth
+	 [X] 0001_initial
+	 [X] 0002_alter_permission_name_max_length
+	 [X] 0003_alter_user_email_max_length
+	 [X] 0004_alter_user_username_opts
+	 [X] 0005_alter_user_last_login_null
+	 [X] 0006_require_contenttypes_0002
+	 [X] 0007_alter_validators_add_error_messages
+	 [X] 0008_alter_user_username_max_length
+	 [X] 0009_alter_user_last_name_max_length
+	 [X] 0010_alter_group_name_max_length
+	 [X] 0011_update_proxy_permissions
+	 [X] 0012_alter_user_first_name_max_length
+	contenttypes
+	 [X] 0001_initial
+	 [X] 0002_remove_content_type_name
+	laboratorio
+	 [X] 0001_initial
+	 [X] 0002_actualizado_campos
+	sessions
+	 [X] 0001_initial
+
+
+● Pruebas realizadas
+	python manage.py test laboratorio
+	Found 3 test(s).
+	Creating test database for alias 'default'...
+	System check identified no issues (0 silenced).
+	...
+	----------------------------------------------------------------------
+	Ran 3 tests in 0.071s
+
+	OK
+	Destroying test database for alias 'default'...

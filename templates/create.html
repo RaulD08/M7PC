@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 style="text-align:center"> Ingresar los datos del laboratorio</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <table style="width:30%" align="center">
+                <tr>
+                    <td>Nombre:</td>
+                    <td><input type="text" placeholder="Nombre" name="nombre"></td>
+                </tr>
+                <tr>
+                    <td>Ciudad:</td>
+                    <td><input type="text" placeholder="Ciudad" name="ciudad"></td>
+                </tr>
+                <tr>
+                    <td>País:</td>
+                    <td><input type="text" placeholder="País" name="pais"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Crear laboratorio"></td>
+                </tr>
+            </table>
+
+            <br><br>
+            <p>¿Quiere ver el listado de laboratorios?</p>
+            <p><a href="{% url 'mostrar-lab' %}">Mostrar listado completo</a></p>
+        </form>
+
+{% endblock %}

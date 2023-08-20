@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <br><br>
+        <p style="text-align:center">Está seguro que desea eliminar "{{laboratorio.nombre}}, ID: {{laboratorio.id}}"?</p>
+        <p style="text-align:center"><a href="{% url 'mostrar-lab' %}"><-- Volver al listado</a></p>
+        <p style="text-align:center"><input type="submit" value="Confirmar"></p>
+    </form>
+
+{% endblock %}
