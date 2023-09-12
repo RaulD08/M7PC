@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h2 style="text-align:center"> Actualizar los datos del laboratorio ID: {{ laboratorio.id }}</h2>
+    <h2> Actualizar los datos del laboratorio ID: {{ laboratorio.id }}</h2>
     <form action="actualizarlaboratorio/{{ laboratorio.id }}"method="POST">
         {% csrf_token %}
         <table style="width:30%" align="center">
@@ -18,7 +18,7 @@
                 <td><input type="text" value="{{ laboratorio.pais }}" name="pais"></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" value="Actualizar"></td>
+                <td colspan="2" align="center"><input class="btn btn-outline-success btnMargin" type="submit" value="Actualizar"></td>
             </tr>
         </table>
     </form>

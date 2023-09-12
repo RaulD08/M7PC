@@ -1,42 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h2 style="text-align:center"> Información de Laboratorios </h2>
-    <table align="center" style="margin: 0px auto;">
-        <thead>
+    <h2> Registro de laboratorios </h2>
+  
+    <div class="contTable w-75 mx-auto">
+        <table class="table table-hover table-bordered border-primary thead">
+            <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Ciudad</th>
-                <th>País</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">País</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
-        </thead>
-        <tbody>
-            {% for laboratorio in laboratorios %}
-            <tr>
-                <td>{{laboratorio.id}}</td>
-                <td>{{laboratorio.nombre}}</td>
-                <td>{{laboratorio.ciudad}}</td>
-                <td>{{laboratorio.pais}}</td>
-                <td>
-                    <a href="/laboratorio/editar/{{laboratorio.pk}}">Actualizar</a>
-                </td>
-                <td>
-                    <a href="/laboratorio/eliminar/{{laboratorio.pk}}">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br><br>
+            </thead>
+        </table>
+        <div class="tbodyCont">
+            <table class="table table-hover table-bordered border-primary mx-auto scrollTable">
+                <tbody>
+                    {% for laboratorio in laboratorios %}
+                    <tr>
+                        <td>{{laboratorio.id}}</td>
+                        <td>{{laboratorio.nombre}}</td>
+                        <td>{{laboratorio.ciudad}}</td>
+                        <td>{{laboratorio.pais}}</td>
+                        <td>
+                            <a href="/laboratorio/editar/{{laboratorio.pk}}">Actualizar</a>
+                        </td>
+                        <td>
+                            <a href="/laboratorio/eliminar/{{laboratorio.pk}}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
 
-    <p>¿Quiere crear un nuevo laboratorio?</p>
-    <p><a href="{% url 'insertar-lab' %}">Crear nuevo laboratorio</a></p>
+    <p class="p1">¿Quiere ingresar un nuevo laboratorio?</p>
+    <a href="{% url 'insertar-lab' %}"><button type="button" class="btn btn-outline-primary">Crear nuevo registro</button></a>
     
     <br>
-    <p>Usted ha visitado esta página {{ num_visits }} veces.</p>
+    <p class="contador">Usted ha visitado esta página {{ num_visits }} veces.</p>
 
 {% endblock %}

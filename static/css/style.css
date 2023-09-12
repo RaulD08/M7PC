@@ -1,13 +1,62 @@
 
-table {
-    border: 8px outset;
-    border-radius: 10px;
-    border-spacing: 10px;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
+.contGeneral{
+    text-align: center !important;
 }
-th {
-    padding: 5px;
-    border: 1px solid;
-}
+
+    h2{
+        padding-top: 2%;
+        padding-bottom: 1%;
+        border-bottom: 3px solid cornflowerblue;
+        margin-bottom: 40px !important;
+        background-color: #eeeeee;
+    }
+        
+    table{
+        text-align: center;
+    }
+
+        .thead{
+            margin: 0 !important;
+            border-bottom: 2px solid !important;
+        }
+
+        .tbodyCont{
+            overflow-y: auto;
+            max-height: 300px;
+            margin-bottom: 50px;
+        }
+
+        tr th:nth-child(1), tr td:nth-child(1){
+            width: 10%;
+        }
+        tr th:nth-child(2), tr td:nth-child(2){
+            width: 20%;
+        }
+        tr th:nth-child(3), tr td:nth-child(3){
+            width: 20%;
+        }
+        tr th:nth-child(4), tr td:nth-child(4){
+            width: 20%;
+        }
+        tr th:nth-child(5), tr td:nth-child(5){
+            width: 15%;
+        }
+        tr th:nth-child(6), tr td:nth-child(6){
+            width: 15%;
+        }
+
+
+    p.p1{
+        margin-top: 0px;
+    }
+
+    .contador{
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+    }
+
+    .btnMargin{
+        margin-top: 20px;
+    }
+    
